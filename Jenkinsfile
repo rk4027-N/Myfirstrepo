@@ -1,12 +1,12 @@
 pipeline {
     agent any
     tools {
-        maven 'maven' // Or your Maven tool name if different
+        maven 'Maven 3.8.6' // Or your Maven tool name if different
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'my-git-credentials', url: 'https://github.com/rk4027-N/Myfirstrepo.git'
+                git branch: 'master', credentialsId: 'my-git-credentials', url: 'https://github.com/rk4027-N/Myfirstrepo.git'
             }
         }
         stage('Build and Test') {
