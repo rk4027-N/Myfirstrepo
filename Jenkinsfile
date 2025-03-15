@@ -6,7 +6,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'your-git-credentials', url: 'your-git-repo-url'
+                git branch: 'main', credentialsId: 'your-git-credentials', url: 'https://github.com/rk4027-N/Myfirstrepo.git'
             }
         }
         stage('Build and Test') {
