@@ -1,21 +1,21 @@
 pipeline {
     agent any
     tools {
-        maven 'Maven 3.8.6' // Replace with your Maven tool name if different
+        maven 'Maven 3.8.6' // Or your Maven tool name if different
     }
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', credentialsId: 'your-git-credentials', url: 'your-git-repo-url'
+                git branch: 'master', credentialsId: 'my-git-credentials', url: 'https://github.com/rk4027-N/Myfirstrepo.git'
             }
         }
         stage('Build and Test') {
             steps {
-                sh 'mvn clean install -DskipTests=false' // Run tests
+                sh 'mvn clean install -DskipTests=false'
             }
             post {
                 always {
-                    junit 'target/surefire-reports/*.xml' // Publish JUnit test results
+                    junit 'target/surefire-reports/*.xml'
                 }
             }
         }
@@ -30,13 +30,11 @@ pipeline {
                 }
             }
         }
-
         stage('Package') {
             steps {
                 sh 'mvn package'
             }
         }
-
         stage('Docker Build') {
             agent {
                 docker {
@@ -53,23 +51,21 @@ pipeline {
                 }
             }
         }
-
         stage('Deploy to Development') {
             steps {
                 script {
                     sh "echo 'Deploying ${env.DOCKER_IMAGE} to development...'"
-                    // Replace with your actual deployment commands (e.g., kubectl, docker-compose)
+                    // Replace with your actual deployment commands
                     sh "echo 'Deployment commands here, using ${env.DOCKER_IMAGE}'"
                 }
             }
         }
-
         stage('Notify') {
             steps {
                 script {
                     if (currentBuild.result == 'SUCCESS') {
                         echo "Build successful!"
-                        // Send success notification (e.g., email, Slack)
+                        // Send success notification
                     } else {
                         echo "Build failed!"
                         // Send failure notification
