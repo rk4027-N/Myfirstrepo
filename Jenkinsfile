@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html>
-<head>
-<title>Simple HTML Page</title>
-</head>
-<body>
-
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
-
-<a href="https://www.example.com">This is a link</a>
-
-<ul>
-  <li>Item 1</li>
-  <li>Item 2</li>
-  <li>Item 3</li>
-</ul>
-
-<img src="https://via.placeholder.com/150" alt="Placeholder Image">
-
-</body>
-</html>
+pipeline {
+    agent any
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello, Jenkins!'
+            }
+        }
+    }
+}
